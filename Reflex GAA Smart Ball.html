@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reflex GAA Smart Ball</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f9fc; --surface:#ffffff; --ink:#061b3d; --muted:#3d5073;
+  --blue:#1459a3; --sky:#5b97bb; --line:#c9d8e8; --pitch:#2f8f46; --on-blue:#ffffff;
+  --hero-bg:#061b3d; --hero-ink:#ffffff;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#071428; --surface:#0d2140; --ink:#eaf2fb; --muted:#a9bcd6; --blue:#4a8fdc; --sky:#7fb3d6; --line:#1f3a63; --pitch:#4cc26a;
+    --hero-bg:#030c1c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071428; --surface:#0d2140; --ink:#eaf2fb; --muted:#a9bcd6; --blue:#4a8fdc; --sky:#7fb3d6; --line:#1f3a63; --pitch:#4cc26a;
+  --hero-bg:#030c1c; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;line-height:1;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800}
+h3{font-size:1.6rem;font-weight:700}
+p{margin:0 0 1rem;max-width:62ch}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+section{padding:4.5rem 0}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+
+nav{background:var(--hero-bg);position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.8rem;padding-bottom:.8rem;flex-wrap:wrap}
+.brand{font:800 1.5rem "Barlow Condensed",sans-serif;color:#fff;text-decoration:none}
+.links{display:flex;gap:1.1rem;flex-wrap:wrap}
+.links a{color:#cfe0f3;text-decoration:none;font-weight:500;font-size:.95rem}
+.links a:hover{color:#fff}
+
+.hero{background:var(--hero-bg);color:var(--hero-ink);padding:4rem 0 3rem}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(3.4rem,10vw,6.4rem);font-weight:800}
+.hero p{color:#cfe0f3;font-size:1.2rem}
+.hero .by{font-size:.95rem;color:#9fb8d6;margin-top:1.5rem}
+.hero svg{width:100%;height:auto;display:block}
+@media(max-width:780px){.hero .wrap{grid-template-columns:1fr}}
+
+.mission{background:var(--surface);border-block:1px solid var(--line)}
+.stat{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem}
+.stat div{border-left:4px solid var(--blue);padding-left:1rem}
+.stat b{display:block;font:800 2.6rem "Barlow Condensed",sans-serif;color:var(--blue)}
+.stat span{color:var(--muted);font-size:.95rem}
+
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:2rem}
+.part{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:6px;padding:1.4rem}
+.part p{margin:.6rem 0 0;color:var(--muted);font-size:1rem}
+
+.steps{background:var(--hero-bg);color:#fff}
+.steps h2{color:#fff}
+.steps ol{list-style:none;margin:2rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.steps li{background:#0d2a52;border-radius:6px;padding:1.4rem;border:1px solid #1c4276}
+.steps li p{color:#cfe0f3;margin:.6rem 0 0;font-size:1rem}
+.steps li b{display:inline-block;background:var(--sky);color:#061b3d;border-radius:50%;width:2rem;height:2rem;text-align:center;line-height:2rem;font-weight:700;margin-bottom:.7rem}
+
+.costs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-top:2rem}
+.cost{background:var(--surface);border:2px solid var(--blue);border-radius:6px;text-align:center;padding:1.4rem 1rem}
+.cost b{display:block;font:800 3.2rem "Barlow Condensed",sans-serif;color:var(--blue)}
+.cost span{color:var(--muted)}
+.compare{margin-top:1.5rem;background:var(--blue);color:var(--on-blue);border-radius:6px;padding:1.2rem 1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-weight:600}
+.compare small{display:block;font-weight:400;opacity:.9}
+
+footer{background:var(--hero-bg);color:#9fb8d6;padding:2rem 0 2.5rem;font-size:.95rem}
+footer strong{color:#fff}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Reflex GAA</a>
+    <div class="links"><a href="#mission">Mission</a><a href="#ball">The ball</a><a href="#system">How it works</a><a href="#cost">Cost</a></div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Over or wide? Let the ball decide.</h1>
+      <p>Reflex GAA is a smart ball that tracks its own position, so umpires can check a score in seconds in any stadium in the country.</p>
+      <p class="by">Created by Diarmuid Morgan and Rohaan Bhatnagar, St. Patrick’s Classical School</p>
+    </div>
+    <svg viewBox="0 0 400 320" role="img" aria-label="Goalposts with one ball path going between the posts and another going wide">
+      <rect x="0" y="262" width="400" height="58" fill="#2f8f46" opacity=".9"/>
+      <g stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none">
+        <line x1="130" y1="262" x2="130" y2="30"/><line x1="270" y1="262" x2="270" y2="30"/><line x1="130" y1="200" x2="270" y2="200"/>
+      </g>
+      <path d="M40 270 Q120 40 200 110" stroke="#5b97bb" stroke-width="3" stroke-dasharray="7 7" fill="none"/>
+      <path d="M60 280 Q300 20 345 90" stroke="#ff9d66" stroke-width="3" stroke-dasharray="7 7" fill="none"/>
+      <circle cx="200" cy="110" r="14" fill="#fff" stroke="#5b97bb" stroke-width="4"/>
+      <circle cx="345" cy="90" r="14" fill="#fff" stroke="#ff9d66" stroke-width="4"/>
+      <circle cx="200" cy="110" r="26" fill="none" stroke="#5b97bb" stroke-width="2" opacity=".6"/>
+      <circle cx="200" cy="110" r="38" fill="none" stroke="#5b97bb" stroke-width="1.5" opacity=".35"/>
+      <text x="200" y="64" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="26" fill="#7fb3d6">Point</text>
+      <text x="345" y="130" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="26" fill="#ff9d66">Wide</text>
+    </svg>
+  </div>
+</header>
+
+<section id="story">
+  <div class="wrap">
+    <h2>Why we built it</h2>
+    <p>Diarmuid plays GAA for Wolfe Tones. Many of his matches have been tight, with one or two points separating the teams, and too often there have been dodgy calls from the umpires behind the goals.</p>
+    <p>Hawkeye is only available in Croke Park and Semple Stadium. We thought we could make the same service compact enough to fit inside a ball, so it can be used in any stadium around the country.</p>
+  </div>
+</section>
+
+<section class="mission" id="mission">
+  <div class="wrap">
+    <h2>Our mission</h2>
+    <p>We want to make the GAA a fairer place to compete. We’ve relied on decisions from umpires standing behind the goal for too long. In all our years of watching football we’ve heard the same comments: “You need to go to Specsavers,” “That was clearly over, ref,” or “That was clearly wide, ref.”</p>
+    <p>A decision from the umpire can change the course of a game, so it needs to be right.</p>
+    <div class="stat">
+      <div><b>€7,000–€8,000</b><span>to run Hawkeye for one game</span></div>
+      <div><b>€185</b><span>for our smart ball system’s components</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="ball">
+  <div class="wrap">
+    <h2>Inside the Reflex GAA Smart Ball</h2>
+    <p>We add four components to the ball.</p>
+    <div class="grid4">
+      <article class="part"><h3>UWB module</h3><p>A compact ultra-wideband module gives precise tracking and fits inside a football without affecting its balance or aerodynamics.</p></article>
+      <article class="part"><h3>Power supply</h3><p>A small, lightweight thin-film Li-Po battery. Its capacity has to be enough to power the UWB module for the whole game.</p></article>
+      <article class="part"><h3>Microcontroller</h3><p>A small ESP-32 microcontroller works with the UWB module to handle data logging.</p></article>
+      <article class="part"><h3>Data transfer</h3><p>Bluetooth Low Energy sends the data to a nearby receiver for real-time analysis during play.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="system">
+  <div class="wrap">
+    <h2>How the system works</h2>
+    <ol>
+      <li><b>1</b><h3>Pre-match</h3><p>Before the match, modules are attached to the two goal posts. This lets the posts track the ball’s precise location.</p></li>
+      <li><b>2</b><h3>During the game</h3><p>While the ball is moving, its co-ordinates are constantly updated and relayed through the system.</p></li>
+      <li><b>3</b><h3>In action</h3><p>If the umpire can’t tell whether a shot was over or wide, he calls on another official who reads the data on a laptop. It shows whether the ball passed between the two posts or went wide.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="cost">
+  <div class="wrap">
+    <h2>Cost breakdown</h2>
+    <div class="costs">
+      <div class="cost"><b>€45</b><span>Microcontrollers</span></div>
+      <div class="cost"><b>€50</b><span>UWB modules</span></div>
+      <div class="cost"><b>€90</b><span>Ball and other components</span></div>
+    </div>
+    <div class="compare"><span>Total components: €185<small>Hawkeye costs €7,000–€8,000 per game</small></span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><strong>Reflex GAA</strong><br>By Diarmuid Morgan and Rohaan Bhatnagar, St. Patrick’s Classical School</div>
+</footer>
+</body>
+</html>
